@@ -1,0 +1,29 @@
+sequenceDiagram
+    autonumber
+    actor Client as 🌐 Client (SPA / Mobile)
+    participant GW as API Gateway / RateLimiter
+    participant Auth as AuthController & JwtGuard
+    participant RBAC as RbacPermissionFilter
+    participant Redis as Redis Token Store
+    participant Svc as Domain / App Service
+
+    Client->>GW: POST /api/v1/auth/login {username, password}
+    GW->>Auth: Xác thực thông tin đăng nhập (BCrypt / UTC SSO)
+    Auth->>Redis: Lưu RefreshToken JTI (TTL = 7 ngày)
+    Auth-->>Client: 200 OK {accessToken (15m), refreshToken (HttpOnly)}
+
+    Note over Client,Svc: Gọi API nghiệp vụ có bảo vệ phân quyền RBAC
+
+    Client->>GW: POST /api/v1/loans (Authorization: Bearer <JWT>)
+    GW->>Auth: Kiểm tra chữ ký RS256 & hạn AccessToken
+    alt Token hết hạn hoặc không hợp lệ
+        Auth-->>Client: 401 Unauthorized (Yêu cầu Refresh Token)
+    else Token hợp lệ
+        Auth->>RBAC: Kiểm tra quyền 'CIRCULATION_CHECKOUT' trong Role Claims
+        alt Vai trò Bạn đọc gọi API của Thủ thư
+            RBAC-->>Client: 403 Forbidden (RFC 7807 Access Denied)
+        else Vai trò Thủ thư (LIBRARIAN) hợp lệ
+            RBAC->>Svc: Chuyển tiếp yêu cầu kèm SecurityContext
+            Svc-->>Client: 201 Created + Kết quả nghiệp vụ
+        end
+    end

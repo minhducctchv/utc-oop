@@ -1,0 +1,29 @@
+stateDiagram-v2
+    [*] --> ACQUIRING : Đặt mua / Tiếp nhận tài trợ
+    ACQUIRING --> CATALOGED : Biên mục ISBN, dán nhãn Barcode & RFID
+    CATALOGED --> AVAILABLE : Xếp lên kệ lưu thông
+
+    AVAILABLE --> BORROWED : Lập phiếu mượn (checkoutBooks)
+    AVAILABLE --> RESERVED : Gán cho phiếu đặt trước
+    AVAILABLE --> MAINTENANCE : Kiểm kê phát hiện hư hỏng
+
+    RESERVED --> BORROWED : Bạn đọc đặt trước đến nhận sách (< 48h)
+    RESERVED --> AVAILABLE : Hết hạn giữ 48h / Hủy đặt chỗ (không còn người chờ)
+    RESERVED --> RESERVED : Hết hạn 48h -> Chuyển cho người chờ kế tiếp
+
+    BORROWED --> RETURN_INSPECTION : Bạn đọc mang sách trả tại quầy
+    BORROWED --> OVERDUE : Quá ngày dueDate chưa trả (Cronjob 00:05)
+    BORROWED --> LOST : Bạn đọc báo mất sách & đền bù
+
+    OVERDUE --> RETURN_INSPECTION : Bạn đọc trả sách muộn
+    OVERDUE --> LOST : Quá hạn > 90 ngày không thu hồi được
+
+    RETURN_INSPECTION --> AVAILABLE : Sách tốt & Không có hàng đợi chờ
+    RETURN_INSPECTION --> RESERVED : Sách tốt & Có hàng đợi Reservation
+    RETURN_INSPECTION --> MAINTENANCE : Sách rách / bung gáy cần phục chế
+
+    MAINTENANCE --> AVAILABLE : Phục chế hoàn tất, đưa lại lên kệ
+    MAINTENANCE --> RETIRED : Hư hỏng không thể khôi phục (Thanh lý)
+
+    LOST --> [*]
+    RETIRED --> [*]

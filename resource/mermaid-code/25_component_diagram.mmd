@@ -1,0 +1,57 @@
+flowchart TB
+    subgraph Clients["CLIENT APPLICATIONS"]
+        direction LR
+        OPAC_SPA["🌐«component»<br/><b>Reader OPAC Web/App</b>"]
+        Desk_SPA["🖥️«component»<br/><b>Librarian Desk Portal</b>"]
+    end
+
+    subgraph BackendCore["UTC LIBRARY BACKEND SYSTEM (MODULAR MONOLITH)"]
+        Gateway["🛡️«component»<br/><b>REST API Gateway & Security Filter</b><br/>(OpenAPI v1 • JWT • Rate Limiter)"]
+
+        subgraph DomainModules["CORE BUSINESS COMPONENTS"]
+            direction LR
+            CompIAM["🔐«component»<br/><b>Identity & Member</b>"]
+            CompCat["📚«component»<br/><b>Catalog & Inventory</b>"]
+            CompCirc["🔄«component»<br/><b>Circulation & Hold Queue</b>"]
+            CompFine["💰«component»<br/><b>Fine & Payment</b>"]
+            CompRep["📊«component»<br/><b>Reporting & Cron</b>"]
+        end
+
+        EventBus["⚡«component»<br/><b>Internal Domain Event Bus</b>"]
+    end
+
+    subgraph DataAndExt["PERSISTENCE & EXTERNAL ADAPTERS"]
+        direction LR
+        PG[("🗄️ PostgreSQL 16<br/>(Relational DB)")]
+        RD[("⚡ Redis 7<br/>(Cache & Locks)")]
+        S3[("📦 MinIO / S3<br/>(Covers & E-Books)")]
+        VQ["💳 VietQR Gateway"]
+        SMTP["📧 SMTP / Push Server"]
+    end
+
+    OPAC_SPA -->|"HTTPS REST JSON"| Gateway
+    Desk_SPA -->|"HTTPS REST JSON"| Gateway
+
+    Gateway --> CompIAM
+    Gateway --> CompCat
+    Gateway --> CompCirc
+    Gateway --> CompFine
+    Gateway --> CompRep
+
+    CompCirc <--> EventBus
+    CompFine <--> EventBus
+    CompCat <--> EventBus
+    CompRep <--> EventBus
+
+    CompIAM & CompCat & CompCirc & CompFine --> PG
+    CompCat & CompIAM --> RD
+    CompCat --> S3
+    CompFine -->|"HTTPS Webhook"| VQ
+    EventBus --> SMTP
+
+    classDef client fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef comp fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef infra fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    class OPAC_SPA,Desk_SPA client
+    class Gateway,CompIAM,CompCat,CompCirc,CompFine,CompRep,EventBus comp
+    class PG,RD,S3,VQ,SMTP infra

@@ -1,0 +1,17 @@
+flowchart LR
+    Dev["👨‍💻 <b>Git Push / PR</b><br/>(GitHub Flow)"]
+    Lint["🔍 <b>Build & Static Check</b><br/>Compile + Linter +<br/>OpenAPI Schema Lint"]
+    Test["🧪 <b>Automated Testing</b><br/>Unit Tests (Domain/SOLID)<br/>+ Testcontainers PostgreSQL"]
+    Sec["🛡️ <b>Quality & Security</b><br/>SonarQube Coverage ≥ 85%<br/>+ Trivy Container Scan"]
+    Img["🐳 <b>Docker Registry</b><br/>Build Multi-stage Image<br/>Push GHCR (Tag SHA)"]
+    Stg["🚀 <b>Deploy Staging</b><br/>Auto DB Migration (Flyway)<br/>+ E2E API Smoke Tests"]
+    Prod["🏛️ <b>Production Release</b><br/>Rolling Update Zero-Downtime<br/>+ Prometheus Monitoring"]
+
+    Dev --> Lint --> Test --> Sec --> Img --> Stg --> Prod
+
+    classDef ci fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef qa fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef cd fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    class Dev,Lint,Img ci
+    class Test,Sec qa
+    class Stg,Prod cd

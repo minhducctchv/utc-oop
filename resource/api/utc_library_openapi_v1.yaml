@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: UTC Smart Digital Library Management System API
+  version: 1.0.0
+  description: >
+    Đặc tả kiến trúc RESTful API chuẩn OpenAPI 3.0 cho Hệ thống Quản lý Thư viện Số
+    Trường Đại học Giao thông Vận tải (Áp dụng Clean Architecture, SOLID & DDD).
+  contact:
+    name: Nhóm BTL Học phần PTTK Hướng đối tượng - Khoa CNTT ĐH GTVT
+servers:
+  - url: https://api.lib.utc.edu.vn/api/v1
+    description: Production API Gateway
+paths:
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: Đăng nhập hệ thống nhận cặp JWT Access/Refresh Token
+      responses:
+        '200':
+          description: Đăng nhập thành công
+        '401':
+          description: Sai thông tin xác thực (RFC 7807 Problem Details)
+  /books:
+    get:
+      tags: [Catalog & OPAC]
+      summary: Tra cứu danh mục đầu sách OPAC có phân trang, lọc DDC, từ khóa
+      parameters:
+        - name: q
+          in: query
+          schema: { type: string }
+        - name: ddc
+          in: query
+          schema: { type: string }
+        - name: page
+          in: query
+          schema: { type: integer, default: 1 }
+        - name: size
+          in: query
+          schema: { type: integer, default: 20 }
+      responses:
+        '200':
+          description: Danh sách đầu sách kèm số lượng bản sao khả dụng
+    post:
+      tags: [Catalog & OPAC]
+      summary: Biên mục đầu sách mới theo chuẩn ISBN-13 (Role LIBRARIAN)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '201':
+          description: Tạo mới đầu sách thành công
+  /books/{bookTitleId}/copies:
+    post:
+      tags: [Catalog & OPAC]
+      summary: Nhập kho bản sao vật lý và sinh mã Barcode/RFID
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: bookTitleId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '201':
+          description: Danh sách bản sao vừa tạo
+  /loans:
+    post:
+      tags: [Circulation]
+      summary: Lập phiếu mượn sách tại quầy hoặc Kiosk (ACID Transaction)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '201':
+          description: Tạo phiếu mượn thành công
+        '422':
+          description: Vi phạm quy tắc nghiệp vụ (thẻ hết hạn, nợ phạt, vượt hạn mức)
+  /loans/{loanId}/return:
+    post:
+      tags: [Circulation]
+      summary: Nhận trả sách, kiểm định tình trạng, tính phạt & kích hoạt hàng đợi đặt trước
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Biên lai trả sách kèm thông tin phạt (nếu có)
+  /loans/{loanId}/renew:
+    patch:
+      tags: [Circulation]
+      summary: Gia hạn thời gian mượn sách trực tuyến
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: loanId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Gia hạn thành công, cập nhật dueDate mới
+        '409':
+          description: Không thể gia hạn do có bạn đọc khác đang đặt trước đầu sách
+  /reservations:
+    post:
+      tags: [Reservations]
+      summary: Đăng ký đặt trước đầu sách vào hàng đợi FIFO
+      security: [{ bearerAuth: [] }]
+      responses:
+        '201':
+          description: Tạo phiếu đặt chỗ thành công
+        '409':
+          description: Đầu sách vẫn còn bản sao AVAILABLE trên kệ
+  /fines/{invoiceId}/vietqr:
+    post:
+      tags: [Fines & Billing]
+      summary: Khởi tạo mã thanh toán động VietQR cho hóa đơn phạt
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Trả về chuỗi QR EMVCo và URL ảnh QR
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

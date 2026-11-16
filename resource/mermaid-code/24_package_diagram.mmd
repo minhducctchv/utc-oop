@@ -1,0 +1,42 @@
+flowchart TB
+    subgraph RootPkg["📦 vn.edu.utc.library (Root Solution Structure)"]
+        direction TB
+        subgraph ApiPkg["📦 api (Presentation & RESTful Layer)"]
+            P_Ctrl["controllers<br/>(Auth, Catalog, Loan, Reservation, Fine, Report)"]
+            P_Mid["middlewares & filters<br/>(JwtAuthGuard, RbacFilter, ProblemDetailsHandler)"]
+            P_Dto["contracts / dtos<br/>(Request Validation & Response Schemas)"]
+        end
+
+        subgraph AppPkg["📦 application (Use Case Layer)"]
+            A_Svc["services<br/>(Circulation, Reservation, Catalog, Billing)"]
+            A_Evt["event_handlers<br/>(HoldQueueHandler, EmailAlertHandler)"]
+            A_Port["ports<br/>(IUnitOfWork, IPaymentGateway, INotificationSender)"]
+        end
+
+        subgraph DomPkg["📦 domain (Enterprise Business Rules - Pure OOP/DDD)"]
+            D_Cat["catalog<br/>(BookTitle, BookCopy, ISBN, Barcode)"]
+            D_Circ["circulation<br/>(Loan, LoanItem, Reservation, IBorrowingPolicy)"]
+            D_Mem["membership<br/>(Member, UserAccount, Role)"]
+            D_Bill["billing<br/>(FineInvoice, Payment, IFineCalculationStrategy)"]
+        end
+
+        subgraph InfraPkg["📦 infrastructure (Adapters & Frameworks)"]
+            I_Db["persistence.postgres<br/>(Repositories, Migrations, ORM Entities)"]
+            I_Cache["caching.redis<br/>(OpacQueryCache, TokenBlacklist)"]
+            I_Ext["external<br/>(VietQRAdapter, SmtpMailer, UtcSsoClient)"]
+        end
+    end
+
+    ApiPkg -. "«import»" .-> AppPkg
+    AppPkg -. "«import»" .-> DomPkg
+    InfraPkg -. "«implements»" .-> AppPkg
+    InfraPkg -. "«implements»" .-> DomPkg
+
+    classDef pkg1 fill:#E3F2FD,stroke:#1565C0,stroke-width:1.8px,color:#0D47A1
+    classDef pkg2 fill:#FFF8E1,stroke:#F57F17,stroke-width:1.8px,color:#E65100
+    classDef pkg3 fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    classDef pkg4 fill:#F3E5F5,stroke:#6A1B9A,stroke-width:1.8px,color:#4A148C
+    class P_Ctrl,P_Mid,P_Dto pkg1
+    class A_Svc,A_Evt,A_Port pkg2
+    class D_Cat,D_Circ,D_Mem,D_Bill pkg3
+    class I_Db,I_Cache,I_Ext pkg4

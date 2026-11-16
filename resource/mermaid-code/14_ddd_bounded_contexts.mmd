@@ -1,0 +1,32 @@
+flowchart TB
+    subgraph IAM["🔐 IDENTITY & MEMBERSHIP CONTEXT"]
+        IAM_Core["<b>Aggregates:</b> UserAccount, Role, Member<br/><b>Ngôn ngữ chung:</b> Hạng thẻ (MemberType),<br/>Hạn mức mượn, Trạng thái thẻ, Phân quyền RBAC"]
+    end
+
+    subgraph CAT["📚 CATALOG & INVENTORY CONTEXT"]
+        CAT_Core["<b>Aggregates:</b> BookTitle (ISBN), Category, Author<br/><b>Entities:</b> BookCopy (Barcode/RFID, Kệ sách)<br/><b>Ngôn ngữ chung:</b> Ấn phẩm vs Bản sao vật lý, DDC"]
+    end
+
+    subgraph CIRC["🔄 CIRCULATION & RESERVATION CONTEXT (CORE DOMAIN)"]
+        CIRC_Core["<b>Aggregates:</b> Loan (LoanItem), Reservation<br/><b>Policies:</b> IBorrowingPolicy, HoldQueueAllocator<br/><b>Ngôn ngữ chung:</b> Phiếu mượn, Gia hạn, Hàng đợi giữ sách 48h"]
+    end
+
+    subgraph BILL["💳 FINE & BILLING CONTEXT"]
+        BILL_Core["<b>Aggregates:</b> FineInvoice, Payment<br/><b>Strategies:</b> IFineCalculationStrategy<br/><b>Ngôn ngữ chung:</b> Phí quá hạn, Đền bù hư hỏng, Đối soát VietQR"]
+    end
+
+    subgraph NOTIF["📧 NOTIFICATION & ANALYTICS CONTEXT"]
+        NOTIF_Core["<b>Services:</b> NotificationDispatcher, ReportProjection<br/><b>Ngôn ngữ chung:</b> Nhắc hạn trước 2 ngày, Cảnh báo quá hạn, Thống kê"]
+    end
+
+    IAM -->|"Customer-Supplier<br/>(Member Eligibility & Auth Claims)"| CIRC
+    CAT -->|"Customer-Supplier<br/>(BookCopy Availability & Condition)"| CIRC
+    CIRC ==>|"Domain Event:<br/>LoanOverdue / BookDamagedEvent"| BILL
+    BILL ==>|"Domain Event:<br/>FineSettledEvent (Mở khóa quyền mượn)"| IAM
+    CIRC -.->|"Domain Event:<br/>BookCheckedOut / ReservationReadyEvent"| NOTIF
+    BILL -.->|"Domain Event:<br/>FineIssuedEvent"| NOTIF
+
+    classDef core fill:#E8EAF6,stroke:#1A237E,stroke-width:3px,color:#0D47A1
+    classDef supp fill:#FFFFFF,stroke:#1B365D,stroke-width:2px,color:#1B365D
+    class CIRC_Core core
+    class IAM_Core,CAT_Core,BILL_Core,NOTIF_Core supp

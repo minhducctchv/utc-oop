@@ -1,0 +1,44 @@
+flowchart LR
+    Reader["👤 <b>Bạn đọc</b>"]
+    Librarian["👩‍💼 <b>Thủ thư</b>"]
+    PayGW["💳 <b>Cổng VietQR</b>"]
+
+    subgraph CircSub["PHÂN HỆ LƯU THÔNG MƯỢN - TRẢ - ĐẶT CHỖ & PHÍ PHẠT"]
+        UC04(["UC04: Lập phiếu mượn sách"])
+        UC04_1(["UC04.1: Kiểm tra điều kiện thẻ & hạn mức"])
+        UC04_2(["UC04.2: Quét Barcode kiểm tra bản sao"])
+        UC04_3(["UC04.3: Khớp phiếu đặt trước đang giữ"])
+
+        UC05(["UC05: Nhận trả sách & Kiểm định"])
+        UC05_1(["UC05.1: Đối chiếu hạn trả & tình trạng vật lý"])
+        UC05_2(["UC05.2: Cấp phát bản sao cho hàng đợi đặt trước"])
+
+        UC06(["UC06: Gia hạn phiếu mượn"])
+        UC03(["UC03: Đặt trước sách trực tuyến"])
+        UC07(["UC07: Tính phí & Thanh toán tiền phạt"])
+        UC07_1(["UC07.1: Thanh toán trực tuyến qua VietQR"])
+    end
+
+    Librarian --- UC04
+    Librarian --- UC05
+    Librarian --- UC07
+    Reader --- UC03
+    Reader --- UC06
+    Reader --- UC07
+    UC07_1 --- PayGW
+
+    UC04 -. "«include»" .-> UC04_1
+    UC04 -. "«include»" .-> UC04_2
+    UC04_3 -. "«extend»" .-> UC04
+
+    UC05 -. "«include»" .-> UC05_1
+    UC05_2 -. "«extend»" .-> UC05
+    UC07 -. "«extend» [Quá hạn / Hư hỏng]" .-> UC05
+    UC07_1 -. "«extend»" .-> UC07
+
+    classDef actor fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef ucMain fill:#E8EAF6,stroke:#283593,stroke-width:2px,color:#1A237E
+    classDef ucSub fill:#FFFFFF,stroke:#5C6BC0,stroke-width:1.5px,color:#283593
+    class Reader,Librarian,PayGW actor
+    class UC03,UC04,UC05,UC06,UC07 ucMain
+    class UC04_1,UC04_2,UC04_3,UC05_1,UC05_2,UC07_1 ucSub

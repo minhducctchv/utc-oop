@@ -1,0 +1,50 @@
+flowchart TB
+    subgraph Presentation["1. PRESENTATION & API LAYER (Giao diện & Cổng giao tiếp RESTful)"]
+        direction LR
+        WebClient["🌐 Web OPAC / Librarian SPA<br/>(React / Next.js)"]
+        RestCtrl["🔌 RESTful Controllers (/api/v1/*)<br/>AuthController • CatalogController • LoanController • FineController"]
+        Middleware["🛡️ Middleware Pipeline<br/>JWT Guard • RBAC • DTO Validation • RFC 7807 Error Filter"]
+    end
+
+    subgraph Application["2. APPLICATION LAYER (Điều phối Ca sử dụng - Use Case Orchestration)"]
+        direction LR
+        AppSvc["⚙️ Application Services<br/>CirculationApplicationService • ReservationApplicationService<br/>CatalogApplicationService • FineBillingApplicationService"]
+        Ports["📋 Output Ports & Event Bus<br/>IUnitOfWork • IDomainEventPublisher • IPaymentGateway • INotificationSender"]
+    end
+
+    subgraph Domain["3. DOMAIN LAYER - LÕI NGHIỆP VỤ THUẦN KHIẾT (Pure DDD Tactical Core - Zero Framework Dependency)"]
+        direction LR
+        Agg["🏛️ Aggregates & Entities<br/>BookTitle / BookCopy • Member<br/>Loan / LoanItem • Reservation • FineInvoice"]
+        VO["💎 Value Objects<br/>ISBN • Barcode • Money • DateRange"]
+        DomSvc["🧠 Domain Policies & Strategies<br/>IBorrowingPolicy • IFineCalculationStrategy"]
+        RepoIntf["🗂️ Repository Interfaces<br/>ILoanRepository • IBookCopyRepository • IMemberRepository"]
+    end
+
+    subgraph Infrastructure["4. INFRASTRUCTURE LAYER (Triển khai Kỹ thuật & Tích hợp Ngoại vi - Dependency Inversion)"]
+        direction LR
+        Persistence["🗄️ Persistence Adapters<br/>PostgreSQL 16 (3NF + GIN Index)<br/>PostgresLoanRepository • ORM Mapper"]
+        CacheMsg["⚡ Cache & Messaging<br/>Redis Cache (OPAC Search)<br/>In-Memory / RabbitMQ Event Dispatcher"]
+        ExtAdapters["🔗 External Service Adapters<br/>VietQRPaymentAdapter • SmtpEmailAdapter • UtcSsoAdapter"]
+    end
+
+    WebClient -->|"HTTPS JSON"| Middleware --> RestCtrl
+    RestCtrl -->|"Commands / Queries (DTOs)"| AppSvc
+    AppSvc -->|"Gọi hành vi miền"| Agg
+    AppSvc -->|"Áp dụng quy tắc"| DomSvc
+    AppSvc -->|"Qua Abstraction"| RepoIntf
+    AppSvc --> Ports
+    Agg --> VO
+
+    Persistence -. "implements (DIP)" .-> RepoIntf
+    CacheMsg -. "implements (DIP)" .-> Ports
+    ExtAdapters -. "implements (DIP)" .-> Ports
+
+    classDef pres fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef app fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef dom fill:#E8F5E9,stroke:#1B5E20,stroke-width:2.5px,color:#1B5E20
+    classDef infra fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C
+
+    class WebClient,RestCtrl,Middleware pres
+    class AppSvc,Ports app
+    class Agg,VO,DomSvc,RepoIntf dom
+    class Persistence,CacheMsg,ExtAdapters infra

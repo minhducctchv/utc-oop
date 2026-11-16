@@ -1,0 +1,47 @@
+flowchart LR
+    subgraph BoundaryLayer["LỚP BIÊN «Boundary» (Giao diện & API Endpoints)"]
+        B1["🖥️ <b>OPACSearchView</b><br/>«Boundary»"]
+        B2["🖥️ <b>CirculationDeskUI</b><br/>«Boundary»"]
+        B3["🌐 <b>LoanRestController</b><br/>«Boundary»"]
+        B4["💳 <b>VietQRWebhookEndpoint</b><br/>«Boundary»"]
+    end
+
+    subgraph ControlLayer["LỚP ĐIỀU KHIỂN «Control» (Điều phối Nghiệp vụ)"]
+        C1["⚙️ <b>CatalogSearchController</b><br/>«Control»"]
+        C2["⚙️ <b>CirculationCoordinator</b><br/>«Control»"]
+        C3["⚙️ <b>ReservationCoordinator</b><br/>«Control»"]
+        C4["⚙️ <b>FineBillingCoordinator</b><br/>«Control»"]
+    end
+
+    subgraph EntityLayer["LỚP THỰC THỂ «Entity» (Mô hình Miền Nghiệp vụ)"]
+        E1["📘 <b>BookTitle</b><br/>«Entity»"]
+        E2["🏷️ <b>BookCopy</b><br/>«Entity»"]
+        E3["🪪 <b>Member</b><br/>«Entity»"]
+        E4["📄 <b>Loan & LoanItem</b><br/>«Entity»"]
+        E5["📌 <b>Reservation</b><br/>«Entity»"]
+        E6["💰 <b>FineInvoice & Payment</b><br/>«Entity»"]
+    end
+
+    B1 --> C1
+    B2 --> B3
+    B3 --> C2
+    B4 --> C4
+
+    C1 --> E1
+    C1 --> E2
+    C2 --> E3
+    C2 --> E2
+    C2 --> E4
+    C2 --> C3
+    C2 --> C4
+    C3 --> E5
+    C3 --> E2
+    C4 --> E6
+    C4 --> E3
+
+    classDef bnd fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef ctl fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef ent fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    class B1,B2,B3,B4 bnd
+    class C1,C2,C3,C4 ctl
+    class E1,E2,E3,E4,E5,E6 ent

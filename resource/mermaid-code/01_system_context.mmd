@@ -1,0 +1,36 @@
+flowchart TB
+    subgraph Actors["ĐỐI TƯỢNG NGƯỜI DÙNG (USERS)"]
+        direction LR
+        Reader["👤 Bạn đọc (Sinh viên / Giảng viên)<br/>[Web OPAC & Mobile App]"]
+        Librarian["👩‍💼 Thủ thư (Nhân viên Lưu thông & Biên mục)<br/>[Librarian Portal & Barcode Scanner]"]
+        Admin["🛠️ Quản trị viên Hệ thống<br/>[Admin Console]"]
+    end
+
+    subgraph CoreSystem["HỆ THỐNG QUẢN LÝ THƯ VIỆN SỐ THÔNG MINH (UTC LibMS)"]
+        LMS["🏛️ <b>UTC Smart Digital Library System</b><br/>(RESTful API Backend • Clean Architecture • DDD)<br/>Quản lý Biên mục • Lưu thông Mượn/Trả • Đặt chỗ • Phí phạt • Báo cáo"]
+    end
+
+    subgraph ExternalSystems["HỆ THỐNG TÍCH HỢP BÊN NGOÀI (EXTERNAL SYSTEMS)"]
+        direction LR
+        SSO["🔐 Cổng Đào tạo & SSO ĐH GTVT<br/>(OAuth2 / Quản lý Sinh viên - Giảng viên)"]
+        PayGW["💳 Cổng Thanh toán VietQR / VNPay<br/>(Thanh toán phí phạt không tiền mặt)"]
+        NotifyGW["📧 Hệ thống Email SMTP & Firebase Push<br/>(Thông báo hạn trả, giữ sách đặt trước)"]
+        Hardware["📡 Thiết bị Quét Barcode / Cổng từ RFID<br/>(Quầy lưu thông & Kiosk tự phục vụ)"]
+    end
+
+    Reader -->|"Tra cứu OPAC, Đặt trước, Gia hạn, Đọc E-Book (HTTPS/JSON)"| LMS
+    Librarian -->|"Biên mục sách, Lập phiếu mượn/trả, Thu phạt (HTTPS/JSON)"| LMS
+    Admin -->|"Cấu hình chính sách, Phân quyền RBAC, Sao lưu"| LMS
+
+    LMS <-->|"Đồng bộ hồ sơ & Xác thực SSO"| SSO
+    LMS <-->|"Tạo mã QR & Nhận Webhook thanh toán"| PayGW
+    LMS -->|"Gửi thông báo tự động đa kênh"| NotifyGW
+    Hardware <-->|"Đọc mã vạch BookCopy & Kiểm soát an ninh"| LMS
+
+    classDef actor fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef core fill:#1B365D,stroke:#0D1B2A,stroke-width:3px,color:#FFFFFF
+    classDef ext fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+
+    class Reader,Librarian,Admin actor
+    class LMS core
+    class SSO,PayGW,NotifyGW,Hardware ext

@@ -1,0 +1,46 @@
+sequenceDiagram
+    autonumber
+    actor Lib as 👩‍💼 Thủ thư
+    participant Ctrl as LoanController
+    participant Svc as CirculationAppService
+    participant LoanAgg as Loan (Aggregate)
+    participant FineStrat as IFineCalculationStrategy
+    participant ResSvc as ReservationAppService
+    participant UoW as IUnitOfWork & EventBus
+
+    Lib->>Ctrl: POST /api/v1/loans/{id}/return {barcode, conditionIn}
+    activate Ctrl
+    Ctrl->>Svc: returnBooks(ReturnCommand)
+    activate Svc
+
+    Svc->>LoanAgg: returnItem(copyId, today, conditionIn)
+    activate LoanAgg
+    LoanAgg-->>Svc: loanItem (overdueDays, itemStatus)
+    deactivate LoanAgg
+
+    opt overdueDays > 0 HOẶC conditionIn == DAMAGED / LOST
+        Svc->>FineStrat: calculateFine(loanItem, copy, overdueDays)
+        FineStrat-->>Svc: fineAmount: Money
+        Svc->>Svc: FineInvoice.issue(loanId, memberId, fineAmount)
+        Svc->>Svc: member.addFineBalance(fineAmount)
+    end
+
+    alt conditionIn == GOOD và có hàng đợi Reservation
+        Svc->>ResSvc: allocateReturnedCopy(bookTitleId, copyId)
+        activate ResSvc
+        ResSvc-->>Svc: reservation (READY_FOR_PICKUP, hold 48h)
+        deactivate ResSvc
+        Note right of ResSvc: BookCopy -> RESERVED<br/>Phát sự kiện gửi Email giữ sách
+    else conditionIn == GOOD và không có người đặt chờ
+        Svc->>Svc: copy.markReturned(GOOD) -> AVAILABLE (+1)
+    else conditionIn == DAMAGED
+        Svc->>Svc: copy.markMaintenance() -> MAINTENANCE
+    end
+
+    Svc->>LoanAgg: checkAllReturned() -> cập nhật CLOSED nếu đủ
+    Svc->>UoW: commitTransaction() & publish(BookReturnedEvent)
+    UoW-->>Svc: Committed OK
+    Svc-->>Ctrl: ReturnReceiptDto (fineInvoice, nextReservation)
+    Ctrl-->>Lib: HTTP 200 OK + JSON ReturnReceiptDto
+    deactivate Svc
+    deactivate Ctrl

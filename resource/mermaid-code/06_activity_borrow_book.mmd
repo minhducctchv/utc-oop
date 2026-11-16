@@ -1,0 +1,41 @@
+flowchart TB
+    Start(("● Bắt đầu")) --> Present["👤 Bạn đọc xuất trình Thẻ thư viện<br/>và các cuốn sách muốn mượn"]
+    Present --> ScanMember["👩‍💼 Thủ thư quét mã thẻ bạn đọc (memberCode)"]
+    ScanMember --> CheckMember{"⚙️ Thẻ hợp lệ, còn hạn &<br/>Nợ phạt ≤ ngưỡng cho phép?"}
+
+    CheckMember -- "Không đạt (Thẻ khóa / Nợ quá mức)" --> RejectMember["❌ Thông báo lý do từ chối mượn<br/>& Hướng dẫn gia hạn thẻ / đóng phạt"]
+    RejectMember --> EndFail(("◉ Kết thúc"))
+
+    CheckMember -- "Hợp lệ" --> CheckQuota{"⚙️ Số sách đang mượn + yêu cầu<br/>≤ Hạn mức IBorrowingPolicy?"}
+    CheckQuota -- "Vượt hạn mức tối đa" --> RejectQuota["⚠️ Yêu cầu giảm bớt số cuốn mượn"]
+    RejectQuota --> EndFail
+
+    CheckQuota -- "Đủ hạn mức" --> ScanBook["👩‍💼 Thủ thư quét Barcode từng cuốn BookCopy"]
+    ScanBook --> CheckCopy{"⚙️ Trạng thái BookCopy?"}
+
+    CheckCopy -- "AVAILABLE (Sẵn sàng)" --> AddItem["➕ Thêm BookCopy vào danh sách phiếu mượn"]
+    CheckCopy -- "RESERVED (Đang giữ chỗ)" --> CheckOwner{"Đúng người đặt trước<br/>& còn hạn giữ chỗ?"}
+    CheckOwner -- "Đúng bạn đọc" --> FulfillRes["✅ Khớp phiếu Reservation (FULFILLED)<br/>& Thêm vào danh sách mượn"]
+    CheckOwner -- "Sai người đặt" --> SkipBook["🚫 Từ chối cuốn sách đang giữ cho người khác"]
+    CheckCopy -- "BORROWED / MAINTENANCE" --> SkipBook
+
+    AddItem --> MoreBooks{"Còn sách cần quét?"}
+    FulfillRes --> MoreBooks
+    SkipBook --> MoreBooks
+
+    MoreBooks -- "Còn cuốn tiếp theo" --> ScanBook
+    MoreBooks -- "Đã quét xong" --> HasValid{"Có ít nhất 1 cuốn<br/>hợp lệ trong giỏ?"}
+    HasValid -- "Không" --> EndFail
+
+    HasValid -- "Có" --> CommitTx["💾 <b>Giao dịch ACID (Unit of Work):</b><br/>1. Tạo Loan (ACTIVE) & LoanItem, tính dueDate<br/>2. Đổi BookCopy sang BORROWED, giảm availableCopies<br/>3. Tăng activeLoansCount của Member"]
+    CommitTx --> Notify["📧 Phát BookCheckedOutEvent: Gửi biên lai điện tử<br/>& In phiếu mượn tại quầy"]
+    Notify --> EndOK(("◉ Hoàn tất"))
+
+    classDef startend fill:#1B365D,stroke:#0D1B2A,color:#FFFFFF
+    classDef dec fill:#FFF8E1,stroke:#F57F17,stroke-width:2px,color:#E65100
+    classDef err fill:#FFEBEE,stroke:#C62828,color:#B71C1C
+    classDef ok fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    class Start,EndFail,EndOK startend
+    class CheckMember,CheckQuota,CheckCopy,CheckOwner,MoreBooks,HasValid dec
+    class RejectMember,RejectQuota,SkipBook err
+    class CommitTx,FulfillRes,Notify ok

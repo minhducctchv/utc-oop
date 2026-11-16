@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph Problems["THỰC TRẠNG & HẠN CHẾ QUẢN LÝ TRUYỀN THỐNG"]
+        P1["⚠️ <b>Quản lý chung Đầu sách & Bản sao</b><br/>Không theo dõi được tình trạng, vị trí kệ<br/>của từng cuốn sách vật lý riêng biệt"]
+        P2["⚠️ <b>Nghẽn cổ chai tại Quầy lưu thông</b><br/>Kiểm tra thẻ, nợ phạt và ghi sổ thủ công<br/>gây ùn tắc giờ cao điểm mùa thi"]
+        P3["⚠️ <b>Thất thoát & Trễ hạn kéo dài</b><br/>Thiếu cơ chế nhắc hạn tự động và<br/>tính phí phạt minh bạch theo quy chế"]
+        P4["⚠️ <b>Đứt gãy thông tin Đặt trước</b><br/>Bạn đọc không biết khi nào sách hiếm<br/>được trả về kho để đăng ký mượn"]
+    end
+
+    subgraph Solutions["GIẢI PHÁP CHUYỂN ĐỔI SỐ (UTC LibMS)"]
+        S1["✅ <b>Tách biệt BookTitle & BookCopy (DDD)</b><br/>Định danh ISBN cho ấn phẩm và Barcode/RFID<br/>duy nhất cho từng bản sao vật lý"]
+        S2["✅ <b>Tự động hóa Lưu thông RESTful API</b><br/>Quét mã vạch 1 chạm, kiểm tra điều kiện<br/>mượn tức thời trong < 200ms"]
+        S3["✅ <b>Policy & Strategy Engine + VietQR</b><br/>Tự động tính phạt theo hạng thẻ/loại sách,<br/>nhắc hạn Cronjob & thanh toán QR tức thì"]
+        S4["✅ <b>Hàng đợi Đặt chỗ Thông minh (Hold Queue)</b><br/>Domain Event tự động giữ sách 48h cho<br/>người tiếp theo ngay khi có bản sao trả về"]
+    end
+
+    P1 ==>|"Chuẩn hóa mô hình miền"| S1
+    P2 ==>|"Số hóa quy trình OOA/OOD"| S2
+    P3 ==>|"Áp dụng SOLID & Tích hợp số"| S3
+    P4 ==>|"Kiến trúc hướng sự kiện"| S4
+
+    classDef prob fill:#FFEBEE,stroke:#C62828,stroke-width:1.5px,color:#B71C1C
+    classDef sol fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    class P1,P2,P3,P4 prob
+    class S1,S2,S3,S4 sol

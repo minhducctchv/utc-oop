@@ -1,0 +1,112 @@
+classDiagram
+    direction TB
+
+    class Loan {
+        <<AggregateRoot>>
+        -UUID id
+        -String loanCode
+        -UUID memberId
+        -UUID librarianId
+        -LocalDateTime borrowedAt
+        -LocalDate dueDate
+        -LocalDateTime closedAt
+        -int renewalCount
+        -LoanStatus status
+        -long version
+        +addItem(copy: BookCopy) LoanItem
+        +returnItem(copyId: UUID, retDate: LocalDate, cond: CopyCondition) LoanItem
+        +renew(newDue: LocalDate, maxRenew: int) void
+        +isOverdue(today: LocalDate) Boolean
+        +checkAllReturned() Boolean
+    }
+
+    class LoanItem {
+        <<Entity>>
+        -UUID id
+        -UUID loanId
+        -UUID bookCopyId
+        -LocalDateTime returnedAt
+        -CopyCondition conditionOut
+        -CopyCondition conditionIn
+        -int overdueDays
+        -LoanItemStatus itemStatus
+        +calculateOverdueDays(due: LocalDate, ret: LocalDate) int
+    }
+
+    class Reservation {
+        <<AggregateRoot>>
+        -UUID id
+        -String reservationCode
+        -UUID memberId
+        -UUID bookTitleId
+        -UUID assignedCopyId
+        -int queuePosition
+        -LocalDateTime createdAt
+        -LocalDateTime holdExpiresAt
+        -ReservationStatus status
+        +assignCopy(copyId: UUID, holdHours: int) void
+        +fulfill() void
+        +cancel() void
+        +expireHold() void
+    }
+
+    class FineInvoice {
+        <<AggregateRoot>>
+        -UUID id
+        -String invoiceCode
+        -UUID loanId
+        -UUID memberId
+        -FineReason reason
+        -Money amount
+        -Money paidAmount
+        -FineStatus status
+        +recordPayment(payment: Payment) void
+        +getRemainingBalance() Money
+    }
+
+    class Payment {
+        <<Entity>>
+        -UUID id
+        -UUID fineInvoiceId
+        -String transactionRef
+        -PaymentMethod method
+        -Money amount
+        -LocalDateTime paidAt
+        -PaymentStatus status
+    }
+
+    class Money {
+        <<ValueObject>>
+        -BigDecimal amount
+        -String currency
+        +add(other: Money) Money
+        +subtract(other: Money) Money
+    }
+
+    class CopyStatus {
+        <<enumeration>>
+        AVAILABLE
+        BORROWED
+        RESERVED
+        MAINTENANCE
+        LOST
+        RETIRED
+    }
+
+    class LoanStatus {
+        <<enumeration>>
+        DRAFT
+        ACTIVE
+        RENEWED
+        PARTIALLY_RETURNED
+        OVERDUE
+        FINE_PENDING
+        CLOSED
+    }
+
+    Loan "1" *-- "1..*" LoanItem : quản lý chi tiết >
+    Loan "1" -- "0..*" FineInvoice : phát sinh >
+    FineInvoice "1" *-- "0..*" Payment : ghi nhận giao dịch >
+    FineInvoice *-- Money
+    Loan ..> LoanStatus
+    Reservation ..> CopyStatus
