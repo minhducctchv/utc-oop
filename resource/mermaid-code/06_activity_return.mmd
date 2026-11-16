@@ -1,0 +1,22 @@
+flowchart TB
+    Start(("● Bắt đầu")) --> Scan["1. Thủ thư quét Barcode sách trả"]
+    Scan --> CheckLate{"2. Trả quá hạn<br/>hoặc Hư hỏng?"}
+
+    CheckLate -- "Có vi phạm" --> Fine["💰 Tính tiền phạt tự động<br/>& Thanh toán VietQR / Tiền mặt"]
+    CheckLate -- "Đúng hạn & Tốt" --> QueueCheck{"3. Có bạn đọc khác<br/>đặt trước không?"}
+    Fine --> QueueCheck
+
+    QueueCheck -- "Có người chờ" --> Hold["📌 Giữ sách 48h (RESERVED)<br/>& Gửi Email mời nhận sách"]
+    QueueCheck -- "Không ai chờ" --> Shelf["📗 Đưa lại lên kệ (AVAILABLE)"]
+
+    Hold --> Close["4. Cập nhật đóng Phiếu mượn"] --> End(("◉ Hoàn tất"))
+    Shelf --> Close
+
+    classDef st fill:#1B365D,stroke:#0F2342,color:#FFFFFF
+    classDef dec fill:#FFF8E1,stroke:#F59E0B,stroke-width:2px,color:#B45309
+    classDef warn fill:#FFEBEE,stroke:#DC2626,color:#991B1B
+    classDef ok fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    class Start,End st
+    class CheckLate,QueueCheck dec
+    class Fine warn
+    class Hold,Shelf,Close ok

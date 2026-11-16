@@ -1,0 +1,26 @@
+flowchart LR
+    Reader["👤 <b>Bạn đọc</b>"]
+    Librarian["👩‍💼 <b>Thủ thư</b>"]
+
+    subgraph Circ["PHÂN HỆ MƯỢN - TRẢ & XỬ LÝ PHẠT"]
+        UC4(["UC04: Mượn sách"])
+        UC4_1(["Kiểm tra thẻ & hạn mức"])
+        UC5(["UC05: Trả sách"])
+        UC5_1(["Giữ sách cho người đặt trước"])
+        UC7(["UC07: Lập phiếu & Thu phạt"])
+        UC3(["UC03: Đặt trước sách"])
+    end
+
+    Librarian --- UC4 & UC5
+    Reader --- UC3 & UC7
+
+    UC4 -. "«include»" .-> UC4_1
+    UC5_1 -. "«extend» [Có người chờ]" .-> UC5
+    UC7 -. "«extend» [Trả trễ / Hỏng]" .-> UC5
+
+    classDef actor fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef main fill:#EBF3FA,stroke:#1B365D,stroke-width:2px,color:#1B365D
+    classDef sub fill:#FFFFFF,stroke:#64748B,stroke-width:1.5px,color:#334155
+    class Reader,Librarian actor
+    class UC3,UC4,UC5,UC7 main
+    class UC4_1,UC5_1 sub

@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+    actor Lib as 👩‍💼 Thủ thư
+    participant API as LoanController
+    participant Svc as LoanService
+    participant Copy as BookCopy
+    participant Repo as ILoanRepository
+
+    Lib->>API: POST /api/v1/loans (memberCode, barcode)
+    API->>Svc: borrowBook(memberCode, barcode)
+    Svc->>Svc: Kiểm tra Member.canBorrow(policy)
+    alt Không đủ điều kiện mượn
+        Svc-->>API: Lỗi 422 (Thẻ hết hạn / Quá hạn mức)
+        API-->>Lib: Hiển thị cảnh báo từ chối
+    else Đủ điều kiện hợp lệ
+        Svc->>Copy: markBorrowed() -> status = BORROWED
+        Svc->>Repo: save(loan) [Giao dịch ACID]
+        Repo-->>Svc: Thành công
+        Svc-->>API: LoanReceiptDTO (Mã phiếu, Hạn trả)
+        API-->>Lib: 201 Created (In phiếu mượn)
+    end

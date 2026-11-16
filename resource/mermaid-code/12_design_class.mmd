@@ -1,0 +1,58 @@
+classDiagram
+    direction TB
+
+    class Member {
+        -UUID id
+        -String memberCode
+        -String fullName
+        -MemberType type
+        +canBorrow(policy: IBorrowPolicy) Boolean
+    }
+
+    class BookTitle {
+        -UUID id
+        -String isbn
+        -String title
+        -int availableCount
+        +decreaseAvailable() void
+        +increaseAvailable() void
+    }
+
+    class BookCopy {
+        -UUID id
+        -String barcode
+        -String shelf
+        -CopyStatus status
+        +markBorrowed() void
+        +markReturned() void
+    }
+
+    class Loan {
+        -UUID id
+        -String loanCode
+        -LocalDate dueDate
+        -LoanStatus status
+        +addItem(copy: BookCopy) void
+        +returnItem(copyId: UUID) int
+        +renew(extraDays: int) void
+    }
+
+    class Reservation {
+        -UUID id
+        -int queueOrder
+        -LocalDateTime holdUntil
+        +assignCopy(copyId: UUID) void
+    }
+
+    class Fine {
+        -UUID id
+        -BigDecimal amount
+        -FineStatus status
+        +markPaid(txRef: String) void
+    }
+
+    BookTitle "1" *-- "1..*" BookCopy
+    Member "1" --> "0..*" Loan
+    Loan "1" --> "1..*" BookCopy
+    Member "1" --> "0..*" Reservation
+    Loan "1" --> "0..1" Fine

@@ -1,0 +1,24 @@
+flowchart LR
+    Web["🌐 <b>Web OPAC & Quầy Thủ thư</b>"]
+
+    subgraph Backend["HỆ THỐNG BACKEND (CLEAN MODULES)"]
+        API["🔌 <b>Module REST API</b><br/>(Auth JWT & Controllers)"]
+        Cat["📚 <b>Module Danh mục</b><br/>(Sách & Bản sao)"]
+        Circ["🔄 <b>Module Lưu thông</b><br/>(Mượn, Trả, Đặt chỗ)"]
+        Bill["💳 <b>Module Phí phạt</b><br/>(Tính phạt & VietQR)"]
+    end
+
+    DB[("🗄️ <b>PostgreSQL DB</b>")]
+    QR["🏦 <b>Cổng VietQR</b>"]
+
+    Web -->|"HTTPS JSON"| API
+    API --> Cat & Circ & Bill
+    Cat & Circ & Bill --> DB
+    Bill <--> QR
+
+    classDef ui fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef mod fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    classDef ext fill:#FFF8E1,stroke:#F59E0B,stroke-width:2px,color:#B45309
+    class Web ui
+    class API,Cat,Circ,Bill mod
+    class DB,QR ext

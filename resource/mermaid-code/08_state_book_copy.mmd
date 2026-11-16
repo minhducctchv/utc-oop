@@ -1,0 +1,17 @@
+stateDiagram-v2
+    [*] --> AVAILABLE : Nhập kho & Lên kệ
+
+    AVAILABLE --> BORROWED : Bạn đọc mượn sách
+    AVAILABLE --> RESERVED : Giữ chỗ đặt trước
+
+    RESERVED --> BORROWED : Đến nhận sách (< 48h)
+    RESERVED --> AVAILABLE : Quá 48h không nhận
+
+    BORROWED --> OVERDUE : Quá ngày hẹn trả
+    BORROWED --> AVAILABLE : Trả sách tốt (Không ai chờ)
+    BORROWED --> RESERVED : Trả sách tốt (Có người chờ)
+
+    OVERDUE --> AVAILABLE : Trả sách muộn & Đóng phạt
+    BORROWED --> MAINTENANCE : Trả sách bị rách / hỏng
+    MAINTENANCE --> AVAILABLE : Phục chế xong
+    MAINTENANCE --> [*] : Thanh lý

@@ -1,0 +1,49 @@
+classDiagram
+    direction TB
+
+    class Member {
+        +memberCode
+        +fullName
+        +memberType
+        +status
+    }
+    class Category {
+        +code
+        +name
+    }
+    class BookTitle {
+        +isbn
+        +title
+        +author
+        +availableCount
+    }
+    class BookCopy {
+        +barcode
+        +shelfLocation
+        +condition
+        +status
+    }
+    class Loan {
+        +loanCode
+        +borrowDate
+        +dueDate
+        +status
+    }
+    class Reservation {
+        +queueOrder
+        +holdUntil
+        +status
+    }
+    class Fine {
+        +amount
+        +reason
+        +status
+    }
+
+    Category "1" o-- "0..*" BookTitle : phân loại
+    BookTitle "1" *-- "1..*" BookCopy : gồm bản sao
+    Member "1" -- "0..*" Loan : mượn sách
+    Loan "0..*" --> "1..*" BookCopy : mượn cuốn
+    Member "1" -- "0..*" Reservation : đặt trước
+    Reservation "0..*" --> "1" BookTitle : chờ đầu sách
+    Loan "1" -- "0..1" Fine : phát sinh phạt

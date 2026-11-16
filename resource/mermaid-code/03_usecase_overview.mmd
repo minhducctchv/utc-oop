@@ -1,52 +1,25 @@
 flowchart LR
-    Reader["👤 <b>Bạn đọc</b><br/>(Reader / Patron)"]
-    Librarian["👩‍💼 <b>Thủ thư</b><br/>(Librarian)"]
-    Admin["🛠️ <b>Quản trị viên</b><br/>(System Admin)"]
-    ExtSys["⚡ <b>Hệ thống Ngoài</b><br/>(VietQR & Scheduler)"]
+    Reader["👤 <b>Bạn đọc</b>"]
+    Librarian["👩‍💼 <b>Thủ thư</b>"]
+    Admin["🛠️ <b>Quản trị viên</b>"]
 
-    subgraph Boundary["HỆ THỐNG QUẢN LÝ THƯ VIỆN SỐ (UTC LibMS)"]
-        direction TB
-        UC01(["UC01: Đăng nhập & Quản lý phiên"])
-        UC02(["UC02: Tra cứu & Xem chi tiết tài liệu OPAC"])
-        UC03(["UC03: Đặt trước sách trực tuyến"])
-        UC04(["UC04: Lập phiếu mượn sách"])
-        UC05(["UC05: Nhận trả sách & Kiểm định tình trạng"])
-        UC06(["UC06: Gia hạn phiếu mượn"])
-        UC07(["UC07: Tính phí & Thanh toán tiền phạt"])
-        UC08(["UC08: Quản lý biên mục đầu sách & bản sao"])
-        UC09(["UC09: Quản lý hồ sơ & thẻ bạn đọc"])
-        UC10(["UC10: Quản lý tài khoản, phân quyền & chính sách"])
-        UC11(["UC11: Thống kê, báo cáo & kiểm kê kho"])
-        UC12(["UC12: Quét tự động nhắc hạn & đánh dấu quá hạn"])
+    subgraph System["HỆ THỐNG QUẢN LÝ THƯ VIỆN (UTC LibMS)"]
+        UC1(["UC01: Đăng nhập hệ thống"])
+        UC2(["UC02: Tra cứu sách OPAC"])
+        UC3(["UC03: Đặt trước sách"])
+        UC4(["UC04: Mượn sách"])
+        UC5(["UC05: Trả sách"])
+        UC6(["UC06: Gia hạn mượn"])
+        UC7(["UC07: Thanh toán tiền phạt"])
+        UC8(["UC08: Quản lý sách & Bạn đọc"])
+        UC9(["UC09: Phân quyền & Thống kê"])
     end
 
-    Reader --- UC01
-    Reader --- UC02
-    Reader --- UC03
-    Reader --- UC06
-    Reader --- UC07
-
-    Librarian --- UC01
-    Librarian --- UC02
-    Librarian --- UC04
-    Librarian --- UC05
-    Librarian --- UC07
-    Librarian --- UC08
-    Librarian --- UC09
-    Librarian --- UC11
-
-    Admin --- UC01
-    Admin --- UC10
-    Admin --- UC11
-
-    UC07 --- ExtSys
-    UC12 --- ExtSys
-
-    UC03 -. "«include»" .-> UC01
-    UC04 -. "«include»" .-> UC09
-    UC07 -. "«extend»" .-> UC05
+    Reader --- UC1 & UC2 & UC3 & UC6 & UC7
+    Librarian --- UC1 & UC4 & UC5 & UC7 & UC8
+    Admin --- UC1 & UC9
 
     classDef actor fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
-    classDef uc fill:#FFFFFF,stroke:#1B365D,stroke-width:1.8px,color:#1B365D
-    class Reader,Librarian,Admin,ExtSys actor
-    class UC01,UC02,UC03,UC04,UC05,UC06,UC07,UC08,UC09,UC10,UC11,UC12 uc
+    classDef uc fill:#FFFFFF,stroke:#1B365D,stroke-width:2px,color:#1B365D
+    class Reader,Librarian,Admin actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9 uc

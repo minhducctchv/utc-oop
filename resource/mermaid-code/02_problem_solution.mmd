@@ -1,0 +1,10 @@
+flowchart LR
+    P1["❌ Ghi sổ thủ công<br/>Chậm, dễ nhầm lẫn"] ==> S1["✅ Quét mã Barcode<br/>Mượn/Trả trong 3 giây"]
+    P2["❌ Gộp chung tên sách<br/>Không rõ cuốn nào hỏng"] ==> S2["✅ Tách Đầu sách & Bản sao<br/>Quản lý từng cuốn trên kệ"]
+    P3["❌ Hết sách phải đi về<br/>Không biết khi nào có"] ==> S3["✅ Hàng đợi Đặt trước<br/>Tự động giữ sách 48 giờ"]
+    P4["❌ Tính phạt rắc rối<br/>Thu tiền mặt bất tiện"] ==> S4["✅ Tự động tính phạt<br/>Thanh toán nhanh VietQR"]
+
+    classDef prob fill:#FFEBEE,stroke:#DC2626,stroke-width:2px,color:#991B1B
+    classDef sol fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    class P1,P2,P3,P4 prob
+    class S1,S2,S3,S4 sol

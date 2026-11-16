@@ -1,0 +1,18 @@
+flowchart LR
+    Lib["👩‍💼 <b>:Thủ thư</b>"]
+    Ctrl["🔌 <b>:LoanController</b>"]
+    Svc["⚙️ <b>:LoanService</b>"]
+    Mem["🪪 <b>:Member</b>"]
+    Copy["🏷️ <b>:BookCopy</b>"]
+    Repo["🗄️ <b>:ILoanRepository</b>"]
+
+    Lib -->|"1: POST /loans"| Ctrl
+    Ctrl -->|"1.1: borrowBook()"| Svc
+    Svc -->|"1.2: canBorrow()"| Mem
+    Svc -->|"1.3: markBorrowed()"| Copy
+    Svc -->|"1.4: save(loan)"| Repo
+
+    classDef act fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef obj fill:#FFFFFF,stroke:#1B365D,stroke-width:2px,color:#1B365D
+    class Lib act
+    class Ctrl,Svc,Mem,Copy,Repo obj

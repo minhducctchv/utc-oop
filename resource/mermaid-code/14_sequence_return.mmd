@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    actor Lib as 👩‍💼 Thủ thư
+    participant API as LoanController
+    participant Svc as LoanService
+    participant Fine as IFineStrategy
+    participant Repo as ILoanRepository
+
+    Lib->>API: POST /api/v1/loans/{id}/return (barcode)
+    API->>Svc: returnBook(loanId, barcode)
+    Svc->>Svc: Tính số ngày trễ hạn (daysLate)
+
+    opt Trả trễ hạn hoặc Sách hư hỏng
+        Svc->>Fine: calculateFine(daysLate)
+        Fine-->>Svc: Số tiền phạt (VNĐ)
+        Svc->>Svc: Tạo phiếu phạt (Fine)
+    end
+
+    alt Có bạn đọc đặt trước đầu sách này
+        Svc->>Svc: Gán giữ chỗ 48h (BookCopy -> RESERVED)
+    else Không có người chờ
+        Svc->>Svc: Đưa sách lên kệ (BookCopy -> AVAILABLE)
+    end
+
+    Svc->>Repo: save(loan) & cập nhật trạng thái
+    Svc-->>API: Kết quả trả sách & Hóa đơn phạt
+    API-->>Lib: 200 OK

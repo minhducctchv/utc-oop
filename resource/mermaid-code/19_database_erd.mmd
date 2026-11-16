@@ -1,0 +1,68 @@
+erDiagram
+    USERS ||--o| MEMBERS : "lien_ket"
+    CATEGORIES ||--o{ BOOK_TITLES : "phan_loai"
+    BOOK_TITLES ||--|{ BOOK_COPIES : "co_ban_sao"
+    MEMBERS ||--o{ LOANS : "lap_phieu"
+    LOANS ||--|{ LOAN_ITEMS : "chi_tiet"
+    BOOK_COPIES ||--o{ LOAN_ITEMS : "duoc_muon"
+    MEMBERS ||--o{ RESERVATIONS : "dat_truoc"
+    BOOK_TITLES ||--o{ RESERVATIONS : "cho_sach"
+    LOANS ||--o| FINES : "phat_sinh"
+
+    USERS {
+        uuid id PK
+        varchar username UK
+        varchar role
+    }
+    MEMBERS {
+        uuid id PK
+        uuid user_id FK
+        varchar member_code UK
+        varchar full_name
+        varchar member_type
+    }
+    CATEGORIES {
+        uuid id PK
+        varchar code UK
+        varchar name
+    }
+    BOOK_TITLES {
+        uuid id PK
+        varchar isbn UK
+        varchar title
+        varchar author
+        uuid category_id FK
+    }
+    BOOK_COPIES {
+        uuid id PK
+        uuid book_title_id FK
+        varchar barcode UK
+        varchar shelf
+        varchar status
+    }
+    RESERVATIONS {
+        uuid id PK
+        uuid member_id FK
+        uuid book_title_id FK
+        int queue_order
+        varchar status
+    }
+    LOANS {
+        uuid id PK
+        varchar loan_code UK
+        uuid member_id FK
+        date due_date
+        varchar status
+    }
+    LOAN_ITEMS {
+        uuid id PK
+        uuid loan_id FK
+        uuid book_copy_id FK
+        date return_date
+    }
+    FINES {
+        uuid id PK
+        uuid loan_id FK
+        numeric amount
+        varchar status
+    }

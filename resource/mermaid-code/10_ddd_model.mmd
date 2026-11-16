@@ -1,0 +1,24 @@
+flowchart LR
+    subgraph Cat["📚 Miền Danh mục (Catalog)"]
+        BT["👑 <b>BookTitle</b> (Aggregate Root)<br/>Đầu sách chung • Mã ISBN"]
+        BC["🏷️ <b>BookCopy</b> (Entity)<br/>Từng cuốn vật lý • Barcode"]
+        BT -->|"1 ◆── 1..*"| BC
+    end
+
+    subgraph Circ["🔄 Miền Lưu thông (Circulation)"]
+        LN["👑 <b>Loan</b> (Aggregate Root)<br/>Phiếu mượn • Hạn trả"]
+        LI["📄 <b>LoanItem</b> (Entity)<br/>Chi tiết cuốn mượn"]
+        LN -->|"1 ◆── 1..*"| LI
+    end
+
+    subgraph Bill["💳 Miền Phí phạt (Billing)"]
+        FN["👑 <b>Fine</b> (Aggregate Root)<br/>Số tiền phạt (Money VO)"]
+    end
+
+    LI -.->|"Tham chiếu ID"| BC
+    LN -.->|"Sự kiện Trả trễ"| FN
+
+    classDef agg fill:#1B365D,stroke:#0F2342,stroke-width:2px,color:#FFFFFF
+    classDef ent fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    class BT,LN,FN agg
+    class BC,LI ent

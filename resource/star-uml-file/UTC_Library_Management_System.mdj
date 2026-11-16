@@ -1,372 +1,136 @@
 {
   "_type": "Project",
-  "_id": "AAAAAAGPRJ001001=",
-  "name": "UTC_Smart_Library_Management_System",
-  "author": "Nhóm BTL Học phần PTTK HĐT - ĐH Giao thông Vận tải (GVHD: TS. Đào Thị Lệ Thủy)",
-  "version": "1.0.0",
+  "_id": "AAAAAAGPRJ00101=",
+  "name": "UTC_Library_Management_Simple",
   "ownedElements": [
     {
       "_type": "UMLModel",
-      "_id": "AAAAAAGUCM001002=",
+      "_id": "AAAAAAGUCM00102=",
       "_parent": {
-        "$ref": "AAAAAAGPRJ001001="
+        "$ref": "AAAAAAGPRJ00101="
       },
-      "name": "01_UseCase_Analysis_Model",
+      "name": "01_UseCaseModel",
       "ownedElements": [
         {
           "_type": "UMLActor",
-          "_id": "AAAAAAGACT001004=",
+          "_id": "AAAAAAGACT00104=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "Reader",
-          "documentation": "Bạn đọc (Sinh viên / Giảng viên / Học viên)"
+          "name": "Reader (Bạn đọc)"
         },
         {
           "_type": "UMLActor",
-          "_id": "AAAAAAGACT001005=",
+          "_id": "AAAAAAGACT00105=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "Librarian",
-          "documentation": "Thủ thư (Nhân viên Lưu thông & Biên mục)"
+          "name": "Librarian (Thủ thư)"
         },
         {
           "_type": "UMLActor",
-          "_id": "AAAAAAGACT001006=",
+          "_id": "AAAAAAGACT00106=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "SystemAdmin",
-          "documentation": "Quản trị viên Hệ thống"
-        },
-        {
-          "_type": "UMLActor",
-          "_id": "AAAAAAGACT001007=",
-          "_parent": {
-            "$ref": "AAAAAAGUCM001002="
-          },
-          "name": "VietQRGateway",
-          "documentation": "Cổng thanh toán trực tuyến VietQR / VNPay"
+          "name": "Admin (Quản trị viên)"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001008=",
+          "_id": "AAAAAAGUC00107=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC01: Đăng nhập & Quản lý phiên (JWT/SSO)"
+          "name": "UC01: Đăng nhập hệ thống"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001009=",
+          "_id": "AAAAAAGUC00108=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC02: Tra cứu & Xem chi tiết tài liệu OPAC"
+          "name": "UC02: Tra cứu sách OPAC"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001010=",
+          "_id": "AAAAAAGUC00109=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC03: Đặt trước sách trực tuyến (Hold Queue)"
+          "name": "UC03: Đặt trước sách"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001011=",
+          "_id": "AAAAAAGUC00110=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC04: Lập phiếu mượn sách"
+          "name": "UC04: Mượn sách"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001012=",
+          "_id": "AAAAAAGUC00111=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC05: Nhận trả sách & Kiểm định tình trạng"
+          "name": "UC05: Trả sách"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001013=",
+          "_id": "AAAAAAGUC00112=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC06: Gia hạn phiếu mượn"
+          "name": "UC06: Gia hạn mượn"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001014=",
+          "_id": "AAAAAAGUC00113=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC07: Tính phí & Thanh toán tiền phạt"
+          "name": "UC07: Thanh toán tiền phạt"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001015=",
+          "_id": "AAAAAAGUC00114=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC08: Quản lý biên mục đầu sách & bản sao"
+          "name": "UC08: Quản lý sách & Bạn đọc"
         },
         {
           "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001016=",
+          "_id": "AAAAAAGUC00115=",
           "_parent": {
-            "$ref": "AAAAAAGUCM001002="
+            "$ref": "AAAAAAGUCM00102="
           },
-          "name": "UC09: Quản lý hồ sơ & thẻ bạn đọc"
-        },
-        {
-          "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001017=",
-          "_parent": {
-            "$ref": "AAAAAAGUCM001002="
-          },
-          "name": "UC10: Quản lý tài khoản, phân quyền & chính sách"
-        },
-        {
-          "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001018=",
-          "_parent": {
-            "$ref": "AAAAAAGUCM001002="
-          },
-          "name": "UC11: Thống kê, báo cáo lưu thông & kiểm kê kho"
-        },
-        {
-          "_type": "UMLUseCase",
-          "_id": "AAAAAAGUC001019=",
-          "_parent": {
-            "$ref": "AAAAAAGUCM001002="
-          },
-          "name": "UC12: Quét tự động nhắc hạn & đánh dấu quá hạn"
+          "name": "UC09: Phân quyền & Thống kê"
         }
       ]
     },
     {
       "_type": "UMLModel",
-      "_id": "AAAAAAGCLM001003=",
+      "_id": "AAAAAAGCLM00103=",
       "_parent": {
-        "$ref": "AAAAAAGPRJ001001="
+        "$ref": "AAAAAAGPRJ00101="
       },
-      "name": "02_DDD_SOLID_Design_Model",
+      "name": "02_DesignClassModel",
       "ownedElements": [
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001020=",
+          "_id": "AAAAAAGCLS00116=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "UserAccount",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001021=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001022=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "username",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001023=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "email",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001024=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "passwordHash",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001025=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "status",
-              "type": "AccountStatus",
-              "visibility": "private"
-            }
-          ],
-          "operations": [
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001026=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "verifyPassword",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001027=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001026="
-                  },
-                  "name": "raw",
-                  "type": "String",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001028=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001026="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001029=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001020="
-              },
-              "name": "lockAccount",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001030=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001029="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001031=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "Role",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001032=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001031="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001033=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001031="
-              },
-              "name": "code",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001034=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001031="
-              },
-              "name": "name",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001035=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001031="
-              },
-              "name": "permissions",
-              "type": "Set<String>",
-              "visibility": "private"
-            }
-          ],
-          "operations": [
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001036=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001031="
-              },
-              "name": "hasPermission",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001037=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001036="
-                  },
-                  "name": "perm",
-                  "type": "String",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001038=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001036="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001039=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "Member",
           "stereotype": "AggregateRoot",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001040=",
+              "_id": "AAAAAAGA00117=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001039="
+                "$ref": "AAAAAAGCLS00116="
               },
               "name": "id",
               "type": "UUID",
@@ -374,19 +138,9 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001041=",
+              "_id": "AAAAAAGA00118=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "userId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001042=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
+                "$ref": "AAAAAAGCLS00116="
               },
               "name": "memberCode",
               "type": "String",
@@ -394,9 +148,9 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001043=",
+              "_id": "AAAAAAGA00119=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001039="
+                "$ref": "AAAAAAGCLS00116="
               },
               "name": "fullName",
               "type": "String",
@@ -404,298 +158,41 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001044=",
+              "_id": "AAAAAAGA00120=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001039="
+                "$ref": "AAAAAAGCLS00116="
               },
-              "name": "memberType",
+              "name": "type",
               "type": "MemberType",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001045=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "cardExpiryDate",
-              "type": "LocalDate",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001046=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "activeLoansCount",
-              "type": "int",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001047=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "unpaidFineBalance",
-              "type": "Money",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001048=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "status",
-              "type": "MemberStatus",
               "visibility": "private"
             }
           ],
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001049=",
+              "_id": "AAAAAAGO00121=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001039="
+                "$ref": "AAAAAAGCLS00116="
               },
               "name": "canBorrow",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001050=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001049="
-                  },
-                  "name": "requestedCount",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001051=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001049="
-                  },
-                  "name": "policy",
-                  "type": "IBorrowingPolicy",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001052=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001049="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001053=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "incrementActiveLoans",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001054=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001053="
-                  },
-                  "name": "count",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001055=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001053="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001056=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "decrementActiveLoans",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001057=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001056="
-                  },
-                  "name": "count",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001058=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001056="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001059=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "addFineBalance",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001060=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001059="
-                  },
-                  "name": "amount",
-                  "type": "Money",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001061=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001059="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001062=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "settleFineBalance",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001063=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001062="
-                  },
-                  "name": "amount",
-                  "type": "Money",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001064=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001062="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": [
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001225=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "thực hiện mượn",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001226=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001225="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001039="
-                },
-                "multiplicity": "1",
-                "aggregation": "none"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001227=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001225="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001111="
-                },
-                "multiplicity": "0..*",
-                "aggregation": "none"
-              }
-            },
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001228=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001039="
-              },
-              "name": "đặt trước",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001229=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001228="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001039="
-                },
-                "multiplicity": "1",
-                "aggregation": "none"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001230=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001228="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001151="
-                },
-                "multiplicity": "0..*",
-                "aggregation": "none"
-              }
+              "visibility": "public"
             }
           ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001065=",
+          "_id": "AAAAAAGCLS00122=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "Category",
           "stereotype": "Entity",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001066=",
+              "_id": "AAAAAAGA00123=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001065="
+                "$ref": "AAAAAAGCLS00122="
               },
               "name": "id",
               "type": "UUID",
@@ -703,171 +200,41 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001067=",
+              "_id": "AAAAAAGA00124=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001065="
+                "$ref": "AAAAAAGCLS00122="
               },
-              "name": "ddcCode",
+              "name": "code",
               "type": "String",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001068=",
+              "_id": "AAAAAAGA00125=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001065="
+                "$ref": "AAAAAAGCLS00122="
               },
               "name": "name",
               "type": "String",
               "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001069=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001065="
-              },
-              "name": "parentId",
-              "type": "UUID",
-              "visibility": "private"
             }
           ],
-          "operations": [],
-          "ownedElements": [
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001234=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001065="
-              },
-              "name": "phân loại DDC",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001235=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001234="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001065="
-                },
-                "multiplicity": "1",
-                "aggregation": "shared"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001236=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001234="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001078="
-                },
-                "multiplicity": "0..*",
-                "aggregation": "none"
-              }
-            }
-          ]
+          "operations": []
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001070=",
+          "_id": "AAAAAAGCLS00126=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "Publisher",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001071=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001070="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001072=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001070="
-              },
-              "name": "name",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001073=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001070="
-              },
-              "name": "email",
-              "type": "String",
-              "visibility": "private"
-            }
-          ],
-          "operations": [],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001074=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "Author",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001075=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001074="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001076=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001074="
-              },
-              "name": "fullName",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001077=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001074="
-              },
-              "name": "orcid",
-              "type": "String",
-              "visibility": "private"
-            }
-          ],
-          "operations": [],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001078=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "BookTitle",
           "stereotype": "AggregateRoot",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001079=",
+              "_id": "AAAAAAGA00127=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
               "name": "id",
               "type": "UUID",
@@ -875,19 +242,19 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001080=",
+              "_id": "AAAAAAGA00128=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
               "name": "isbn",
-              "type": "ISBN",
+              "type": "String",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001081=",
+              "_id": "AAAAAAGA00129=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
               "name": "title",
               "type": "String",
@@ -895,41 +262,11 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001082=",
+              "_id": "AAAAAAGA00130=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
-              "name": "edition",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001083=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001078="
-              },
-              "name": "publishYear",
-              "type": "int",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001084=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001078="
-              },
-              "name": "totalCopies",
-              "type": "int",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001085=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001078="
-              },
-              "name": "availableCopies",
+              "name": "availableCount",
               "type": "int",
               "visibility": "private"
             }
@@ -937,104 +274,38 @@
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001086=",
+              "_id": "AAAAAAGO00131=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
-              "name": "updateAvailability",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001087=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001086="
-                  },
-                  "name": "delta",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001088=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001086="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
+              "name": "decreaseAvailable",
+              "visibility": "public"
             },
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001089=",
+              "_id": "AAAAAAGO00132=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001078="
+                "$ref": "AAAAAAGCLS00126="
               },
-              "name": "hasAvailableCopy",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001090=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001089="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": [
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001219=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001078="
-              },
-              "name": "gồm các bản sao",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001220=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001219="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001078="
-                },
-                "multiplicity": "1",
-                "aggregation": "composite"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001221=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001219="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001091="
-                },
-                "multiplicity": "1..*",
-                "aggregation": "none"
-              }
+              "name": "increaseAvailable",
+              "visibility": "public"
             }
           ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001091=",
+          "_id": "AAAAAAGCLS00133=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "BookCopy",
           "stereotype": "Entity",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001092=",
+              "_id": "AAAAAAGA00134=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
               "name": "id",
               "type": "UUID",
@@ -1042,69 +313,29 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001093=",
+              "_id": "AAAAAAGA00135=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "bookTitleId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001094=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
               "name": "barcode",
-              "type": "Barcode",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001095=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "rfidTag",
               "type": "String",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001096=",
+              "_id": "AAAAAAGA00136=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
-              "name": "shelfLocation",
+              "name": "shelf",
               "type": "String",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001097=",
+              "_id": "AAAAAAGA00137=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "condition",
-              "type": "CopyCondition",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001098=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "price",
-              "type": "Money",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001099=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
               "name": "status",
               "type": "CopyStatus",
@@ -1114,131 +345,38 @@
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001100=",
+              "_id": "AAAAAAGO00138=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
               "name": "markBorrowed",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001101=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001100="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
+              "visibility": "public"
             },
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001102=",
+              "_id": "AAAAAAGO00139=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001091="
+                "$ref": "AAAAAAGCLS00133="
               },
               "name": "markReturned",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001103=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001102="
-                  },
-                  "name": "cond",
-                  "type": "CopyCondition",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001104=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001102="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001105=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "markReserved",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001106=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001105="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001107=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "markMaintenance",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001108=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001107="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001109=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001091="
-              },
-              "name": "isAvailableForLoan",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001110=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001109="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
+              "visibility": "public"
             }
-          ],
-          "ownedElements": []
+          ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001111=",
+          "_id": "AAAAAAGCLS00140=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "Loan",
           "stereotype": "AggregateRoot",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001112=",
+              "_id": "AAAAAAGA00141=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "id",
               "type": "UUID",
@@ -1246,9 +384,9 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001113=",
+              "_id": "AAAAAAGA00142=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "loanCode",
               "type": "String",
@@ -1256,39 +394,9 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001114=",
+              "_id": "AAAAAAGA00143=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "memberId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001115=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "librarianId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001116=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "borrowedAt",
-              "type": "LocalDateTime",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001117=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "dueDate",
               "type": "LocalDate",
@@ -1296,390 +404,59 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001118=",
+              "_id": "AAAAAAGA00144=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "renewalCount",
-              "type": "int",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001119=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "status",
               "type": "LoanStatus",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001120=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "version",
-              "type": "long",
               "visibility": "private"
             }
           ],
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001121=",
+              "_id": "AAAAAAGO00145=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "addItem",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001122=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001121="
-                  },
-                  "name": "copy",
-                  "type": "BookCopy",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001123=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001121="
-                  },
-                  "type": "LoanItem",
-                  "direction": "return"
-                }
-              ]
+              "visibility": "public"
             },
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001124=",
+              "_id": "AAAAAAGO00146=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "returnItem",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001125=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001124="
-                  },
-                  "name": "copyId",
-                  "type": "UUID",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001126=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001124="
-                  },
-                  "name": "returnDate",
-                  "type": "LocalDate",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001127=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001124="
-                  },
-                  "name": "cond",
-                  "type": "CopyCondition",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001128=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001124="
-                  },
-                  "type": "LoanItem",
-                  "direction": "return"
-                }
-              ]
+              "visibility": "public"
             },
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001129=",
+              "_id": "AAAAAAGO00147=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001111="
+                "$ref": "AAAAAAGCLS00140="
               },
               "name": "renew",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001130=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001129="
-                  },
-                  "name": "newDueDate",
-                  "type": "LocalDate",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001131=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001129="
-                  },
-                  "name": "maxRenewals",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001132=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001129="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001133=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "isOverdue",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001134=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001133="
-                  },
-                  "name": "today",
-                  "type": "LocalDate",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001135=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001133="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001136=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "checkAllReturned",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001137=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001136="
-                  },
-                  "type": "Boolean",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": [
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001222=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001111="
-              },
-              "name": "chứa chi tiết mượn",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001223=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001222="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001111="
-                },
-                "multiplicity": "1",
-                "aggregation": "composite"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001224=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001222="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001138="
-                },
-                "multiplicity": "1..*",
-                "aggregation": "none"
-              }
+              "visibility": "public"
             }
           ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001138=",
+          "_id": "AAAAAAGCLS00148=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "LoanItem",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001139=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001140=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "loanId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001141=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "bookCopyId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001142=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "returnedAt",
-              "type": "LocalDateTime",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001143=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "conditionOut",
-              "type": "CopyCondition",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001144=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "conditionIn",
-              "type": "CopyCondition",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001145=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "overdueDays",
-              "type": "int",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001146=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "itemStatus",
-              "type": "LoanItemStatus",
-              "visibility": "private"
-            }
-          ],
-          "operations": [
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001147=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001138="
-              },
-              "name": "calculateOverdueDays",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001148=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001147="
-                  },
-                  "name": "dueDate",
-                  "type": "LocalDate",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001149=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001147="
-                  },
-                  "name": "returnDate",
-                  "type": "LocalDate",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001150=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001147="
-                  },
-                  "type": "int",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001151=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
           "name": "Reservation",
           "stereotype": "AggregateRoot",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001152=",
+              "_id": "AAAAAAGA00149=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001151="
+                "$ref": "AAAAAAGCLS00148="
               },
               "name": "id",
               "type": "UUID",
@@ -1687,193 +464,51 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001153=",
+              "_id": "AAAAAAGA00150=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001151="
+                "$ref": "AAAAAAGCLS00148="
               },
-              "name": "reservationCode",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001154=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "memberId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001155=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "bookTitleId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001156=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "assignedCopyId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001157=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "queuePosition",
+              "name": "queueOrder",
               "type": "int",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001158=",
+              "_id": "AAAAAAGA00151=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001151="
+                "$ref": "AAAAAAGCLS00148="
               },
-              "name": "holdExpiresAt",
+              "name": "holdUntil",
               "type": "LocalDateTime",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001159=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "status",
-              "type": "ReservationStatus",
               "visibility": "private"
             }
           ],
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001160=",
+              "_id": "AAAAAAGO00152=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001151="
+                "$ref": "AAAAAAGCLS00148="
               },
               "name": "assignCopy",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001161=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001160="
-                  },
-                  "name": "copyId",
-                  "type": "UUID",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001162=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001160="
-                  },
-                  "name": "holdHours",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001163=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001160="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001164=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "fulfill",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001165=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001164="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001166=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "cancel",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001167=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001166="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001168=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001151="
-              },
-              "name": "expireHold",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001169=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001168="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
+              "visibility": "public"
             }
-          ],
-          "ownedElements": []
+          ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001170=",
+          "_id": "AAAAAAGCLS00153=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
-          "name": "FineInvoice",
+          "name": "Fine",
           "stereotype": "AggregateRoot",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001171=",
+              "_id": "AAAAAAGA00154=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001170="
+                "$ref": "AAAAAAGCLS00153="
               },
               "name": "id",
               "type": "UUID",
@@ -1881,69 +516,19 @@
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001172=",
+              "_id": "AAAAAAGA00155=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "invoiceCode",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001173=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "loanId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001174=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "memberId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001175=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "reason",
-              "type": "FineReason",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001176=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
+                "$ref": "AAAAAAGCLS00153="
               },
               "name": "amount",
-              "type": "Money",
+              "type": "BigDecimal",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001177=",
+              "_id": "AAAAAAGA00156=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "paidAmount",
-              "type": "Money",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001178=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
+                "$ref": "AAAAAAGCLS00153="
               },
               "name": "status",
               "type": "FineStatus",
@@ -1953,452 +538,147 @@
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001179=",
+              "_id": "AAAAAAGO00157=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001170="
+                "$ref": "AAAAAAGCLS00153="
               },
-              "name": "recordPayment",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001180=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001179="
-                  },
-                  "name": "payment",
-                  "type": "Payment",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001181=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001179="
-                  },
-                  "type": "void",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001182=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "getRemainingBalance",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001183=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001182="
-                  },
-                  "type": "Money",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": [
-            {
-              "_type": "UMLAssociation",
-              "_id": "AAAAAAGASC001231=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001170="
-              },
-              "name": "thanh toán",
-              "end1": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001232=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001231="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001170="
-                },
-                "multiplicity": "1",
-                "aggregation": "composite"
-              },
-              "end2": {
-                "_type": "UMLAssociationEnd",
-                "_id": "AAAAAAGEND001233=",
-                "_parent": {
-                  "$ref": "AAAAAAGASC001231="
-                },
-                "reference": {
-                  "$ref": "AAAAAAGCLS001184="
-                },
-                "multiplicity": "0..*",
-                "aggregation": "none"
-              }
+              "name": "markPaid",
+              "visibility": "public"
             }
           ]
         },
         {
           "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001184=",
+          "_id": "AAAAAAGCLS00158=",
           "_parent": {
-            "$ref": "AAAAAAGCLM001003="
+            "$ref": "AAAAAAGCLM00103="
           },
-          "name": "Payment",
-          "stereotype": "Entity",
-          "attributes": [
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001185=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "id",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001186=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "fineInvoiceId",
-              "type": "UUID",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001187=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "transactionRef",
-              "type": "String",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001188=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "method",
-              "type": "PaymentMethod",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001189=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "amount",
-              "type": "Money",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001190=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "paidAt",
-              "type": "LocalDateTime",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001191=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001184="
-              },
-              "name": "status",
-              "type": "PaymentStatus",
-              "visibility": "private"
-            }
-          ],
-          "operations": [],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLInterface",
-          "_id": "AAAAAAGCLS001192=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "IBorrowingPolicy",
-          "stereotype": "interface",
-          "attributes": [],
-          "operations": [
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001193=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001192="
-              },
-              "name": "getMaxBooks",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001194=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001193="
-                  },
-                  "type": "int",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001195=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001192="
-              },
-              "name": "getMaxLoanDays",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001196=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001195="
-                  },
-                  "type": "int",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001197=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001192="
-              },
-              "name": "getMaxRenewals",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001198=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001197="
-                  },
-                  "type": "int",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLInterface",
-          "_id": "AAAAAAGCLS001199=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "IFineCalculationStrategy",
-          "stereotype": "interface",
-          "attributes": [],
-          "operations": [
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001200=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001199="
-              },
-              "name": "calculateFine",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001201=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001200="
-                  },
-                  "name": "item",
-                  "type": "LoanItem",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001202=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001200="
-                  },
-                  "name": "copy",
-                  "type": "BookCopy",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001203=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001200="
-                  },
-                  "name": "daysLate",
-                  "type": "int",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001204=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001200="
-                  },
-                  "type": "Money",
-                  "direction": "return"
-                }
-              ]
-            }
-          ],
-          "ownedElements": []
-        },
-        {
-          "_type": "UMLClass",
-          "_id": "AAAAAAGCLS001205=",
-          "_parent": {
-            "$ref": "AAAAAAGCLM001003="
-          },
-          "name": "CirculationApplicationService",
+          "name": "LoanService",
           "stereotype": "Service",
           "attributes": [
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001206=",
+              "_id": "AAAAAAGA00159=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001205="
+                "$ref": "AAAAAAGCLS00158="
               },
-              "name": "loanRepo",
+              "name": "repo",
               "type": "ILoanRepository",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001207=",
+              "_id": "AAAAAAGA00160=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001205="
+                "$ref": "AAAAAAGCLS00158="
               },
-              "name": "copyRepo",
-              "type": "IBookCopyRepository",
+              "name": "policy",
+              "type": "IBorrowPolicy",
               "visibility": "private"
             },
             {
               "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001208=",
+              "_id": "AAAAAAGA00161=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001205="
+                "$ref": "AAAAAAGCLS00158="
               },
-              "name": "memberRepo",
-              "type": "IMemberRepository",
-              "visibility": "private"
-            },
-            {
-              "_type": "UMLAttribute",
-              "_id": "AAAAAAGATR001209=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001205="
-              },
-              "name": "eventPub",
-              "type": "IDomainEventPublisher",
+              "name": "fineStrategy",
+              "type": "IFineStrategy",
               "visibility": "private"
             }
           ],
           "operations": [
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001210=",
+              "_id": "AAAAAAGO00162=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001205="
+                "$ref": "AAAAAAGCLS00158="
               },
-              "name": "checkoutBooks",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001211=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001210="
-                  },
-                  "name": "cmd",
-                  "type": "CheckoutCommand",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001212=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001210="
-                  },
-                  "type": "LoanDto",
-                  "direction": "return"
-                }
-              ]
+              "name": "borrowBook",
+              "visibility": "public"
             },
             {
               "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001213=",
+              "_id": "AAAAAAGO00163=",
               "_parent": {
-                "$ref": "AAAAAAGCLS001205="
+                "$ref": "AAAAAAGCLS00158="
               },
-              "name": "returnBooks",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001214=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001213="
-                  },
-                  "name": "cmd",
-                  "type": "ReturnCommand",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001215=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001213="
-                  },
-                  "type": "ReturnReceiptDto",
-                  "direction": "return"
-                }
-              ]
-            },
-            {
-              "_type": "UMLOperation",
-              "_id": "AAAAAAGOPR001216=",
-              "_parent": {
-                "$ref": "AAAAAAGCLS001205="
-              },
-              "name": "renewLoan",
-              "visibility": "public",
-              "parameters": [
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGPRM001217=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001216="
-                  },
-                  "name": "loanId",
-                  "type": "UUID",
-                  "direction": "in"
-                },
-                {
-                  "_type": "UMLParameter",
-                  "_id": "AAAAAAGRET001218=",
-                  "_parent": {
-                    "$ref": "AAAAAAGOPR001216="
-                  },
-                  "type": "LoanDto",
-                  "direction": "return"
-                }
-              ]
+              "name": "returnBook",
+              "visibility": "public"
             }
-          ],
-          "ownedElements": []
+          ]
+        },
+        {
+          "_type": "UMLInterface",
+          "_id": "AAAAAAGCLS00164=",
+          "_parent": {
+            "$ref": "AAAAAAGCLM00103="
+          },
+          "name": "IBorrowPolicy",
+          "stereotype": "interface",
+          "attributes": [],
+          "operations": [
+            {
+              "_type": "UMLOperation",
+              "_id": "AAAAAAGO00165=",
+              "_parent": {
+                "$ref": "AAAAAAGCLS00164="
+              },
+              "name": "getMaxBooks",
+              "visibility": "public"
+            },
+            {
+              "_type": "UMLOperation",
+              "_id": "AAAAAAGO00166=",
+              "_parent": {
+                "$ref": "AAAAAAGCLS00164="
+              },
+              "name": "getLoanDays",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "_type": "UMLInterface",
+          "_id": "AAAAAAGCLS00167=",
+          "_parent": {
+            "$ref": "AAAAAAGCLM00103="
+          },
+          "name": "IFineStrategy",
+          "stereotype": "interface",
+          "attributes": [],
+          "operations": [
+            {
+              "_type": "UMLOperation",
+              "_id": "AAAAAAGO00168=",
+              "_parent": {
+                "$ref": "AAAAAAGCLS00167="
+              },
+              "name": "calculateFine",
+              "visibility": "public"
+            }
+          ]
+        },
+        {
+          "_type": "UMLInterface",
+          "_id": "AAAAAAGCLS00169=",
+          "_parent": {
+            "$ref": "AAAAAAGCLM00103="
+          },
+          "name": "ILoanRepository",
+          "stereotype": "interface",
+          "attributes": [],
+          "operations": [
+            {
+              "_type": "UMLOperation",
+              "_id": "AAAAAAGO00170=",
+              "_parent": {
+                "$ref": "AAAAAAGCLS00169="
+              },
+              "name": "save",
+              "visibility": "public"
+            }
+          ]
         }
       ]
     }

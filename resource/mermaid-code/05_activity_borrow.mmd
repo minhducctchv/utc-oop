@@ -1,0 +1,19 @@
+flowchart TB
+    Start(("● Bắt đầu")) --> ScanCard["1. Quét thẻ Bạn đọc (Member)"]
+    ScanCard --> CheckCard{"2. Thẻ hợp lệ &<br/>Còn hạn mức mượn?"}
+    CheckCard -- "Không đạt" --> Reject["❌ Từ chối & Báo lý do"] --> End1(("◉ Kết thúc"))
+
+    CheckCard -- "Hợp lệ" --> ScanBook["3. Quét mã Barcode cuốn sách (BookCopy)"]
+    ScanBook --> CheckBook{"4. Sách sẵn sàng<br/>(AVAILABLE)?"}
+    CheckBook -- "Đang bận" --> Reject
+    CheckBook -- "Sẵn sàng" --> CreateLoan["5. Tạo Phiếu mượn (Loan)<br/>Đổi trạng thái sách -> BORROWED"]
+    CreateLoan --> Receipt["6. In phiếu & Gửi Email hạn trả"] --> End2(("◉ Hoàn tất"))
+
+    classDef st fill:#1B365D,stroke:#0F2342,color:#FFFFFF
+    classDef dec fill:#FFF8E1,stroke:#F59E0B,stroke-width:2px,color:#B45309
+    classDef ok fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    classDef err fill:#FFEBEE,stroke:#DC2626,color:#991B1B
+    class Start,End1,End2 st
+    class CheckCard,CheckBook dec
+    class CreateLoan,Receipt ok
+    class Reject err

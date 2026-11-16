@@ -1,0 +1,18 @@
+flowchart LR
+    Client["💻 <b>Thiết bị Người dùng</b><br/>Browser Bạn đọc &<br/>Máy quét Barcode Thủ thư"]
+    Nginx["🛡️ <b>Nginx Gateway</b><br/>HTTPS (TLS 1.3)"]
+    App["🐳 <b>Docker API Server</b><br/>UTC Library Service<br/>(RESTful Backend)"]
+    DB[("🗄️ <b>PostgreSQL 16</b><br/>Dữ liệu chính (3NF)")]
+    Redis[("⚡ <b>Redis Cache</b><br/>Tăng tốc tìm kiếm & JWT")]
+
+    Client -->|"HTTPS :443"| Nginx
+    Nginx -->|"HTTP :8080"| App
+    App -->|"TCP :5432"| DB
+    App -->|"TCP :6379"| Redis
+
+    classDef c fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef s fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    classDef d fill:#F3E5F5,stroke:#7E22CE,stroke-width:2px,color:#581C87
+    class Client,Nginx c
+    class App s
+    class DB,Redis d

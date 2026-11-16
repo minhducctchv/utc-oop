@@ -1,0 +1,51 @@
+classDiagram
+    direction TB
+
+    class LoanService {
+        <<SRP & DIP>>
+        -ILoanRepository repo
+        -IBorrowPolicy policy
+        -IFineStrategy fineStrategy
+        +borrowBook()
+        +returnBook()
+    }
+
+    class IBorrowPolicy {
+        <<interface - OCP & LSP>>
+        +getMaxBooks() int
+        +getLoanDays() int
+    }
+    class StudentPolicy {
+        +5 cuốn / 14 ngày
+    }
+    class LecturerPolicy {
+        +10 cuốn / 30 ngày
+    }
+
+    class IFineStrategy {
+        <<interface - OCP & Strategy>>
+        +calculateFine(daysLate) Decimal
+    }
+    class OverdueFine {
+        +5.000đ / ngày
+    }
+    class DamagedFine {
+        +Đền bù giá bìa
+    }
+
+    class ILoanRepository {
+        <<interface - ISP & DIP>>
+        +save(loan)
+    }
+    class PostgresLoanRepo {
+        +save(loan)
+    }
+
+    LoanService --> IBorrowPolicy
+    LoanService --> IFineStrategy
+    LoanService --> ILoanRepository
+    IBorrowPolicy <|.. StudentPolicy
+    IBorrowPolicy <|.. LecturerPolicy
+    IFineStrategy <|.. OverdueFine
+    IFineStrategy <|.. DamagedFine
+    ILoanRepository <|.. PostgresLoanRepo

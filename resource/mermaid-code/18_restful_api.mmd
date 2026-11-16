@@ -1,0 +1,14 @@
+flowchart LR
+    Req["📱 <b>HTTP Request</b><br/>GET / POST / PATCH / DELETE"]
+    Auth["🔐 <b>JWT & RBAC</b><br/>Xác thực & Phân quyền"]
+    Router["🔌 <b>RESTful Endpoints (/api/v1)</b><br/>• /books (Tra cứu & Biên mục)<br/>• /loans (Mượn, Trả, Gia hạn)<br/>• /reservations (Đặt trước)<br/>• /fines (Đóng phạt QR)"]
+    Resp["📦 <b>JSON Response</b><br/>200/201 Thành công<br/>400/403/422 Báo lỗi chuẩn"]
+
+    Req --> Auth --> Router --> Resp
+
+    classDef n1 fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    classDef n2 fill:#1B365D,stroke:#0F2342,stroke-width:2px,color:#FFFFFF
+    classDef n3 fill:#E8F5E9,stroke:#16A34A,stroke-width:2px,color:#166534
+    class Req,Auth n1
+    class Router n2
+    class Resp n3
